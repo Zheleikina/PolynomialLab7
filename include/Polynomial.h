@@ -1,33 +1,37 @@
 #pragma once
 #include <vector>
 #include <cstddef>
+#include <stdexcept>
 
 class Polynomial {
 private:
     std::vector<double> coeffs_;
-
     void validateCoefficients(const std::vector<double>& coeffs) const;
 
 public:
-    // Конструктори
-    Polynomial(); // Nothrow
-    explicit Polynomial(const std::vector<double>& coeffs); // Strong guarantee
-    Polynomial(const double* arr, int size); // Strong guarantee
+    static constexpr size_t kMaxCapacity = 10000;
 
-    // Геттери (відсутність винятків)
+    Polynomial();
+    explicit Polynomial(const std::vector<double>& coeffs);
+    Polynomial(const double* arr, int size);
+
     int degree() const noexcept;
     int size() const noexcept;
     const std::vector<double>& coefficients() const noexcept;
 
-    // Обчислювальні методи
-    double evaluate(double x) const; // Basic guarantee
-    Polynomial derivative() const; // Strong guarantee
-    Polynomial integral(double constant = 0.0) const; // Strong guarantee
+    // Доступ за індексом (генерує std::out_of_range у разі невалідного індексу)
+    double getCoefficient(size_t index) const;
+    void setCoefficient(size_t index, double value);
 
-    // Арифметичні операції
-    Polynomial add(const Polynomial& other) const; // Strong guarantee
-    Polynomial multiply(const Polynomial& other) const; // Strong guarantee
+    double evaluate(double x) const;
+    Polynomial derivative() const;
+    Polynomial integral(double constant = 0.0) const;
 
-    // Зміна стану зі сильною гарантією (All-or-nothing)
+    Polynomial add(const Polynomial& other) const;
+    Polynomial multiply(const Polynomial& other) const;
+
+    // Сильна гарантія: множення з присвоєнням (operator*=)
+    Polynomial& operator*=(const Polynomial& other);
+
     void setCoefficients(const std::vector<double>& newCoeffs);
 };

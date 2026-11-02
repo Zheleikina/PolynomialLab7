@@ -3,6 +3,7 @@
 #include "Polynomial.h"
 #include "PolynomialExceptions.h"
 #include "ScopeLogger.h"
+#include <limits>
 
 // Рівень 3: виникнення винятку
 void level3() {

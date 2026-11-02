@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 #include "Polynomial.h"
 #include "PolynomialExceptions.h"
+#include <limits>
 
 TEST(PolynomialTest, DefaultAndVectorConstructor) {
     Polynomial p1;
