@@ -1,7 +1,10 @@
-﻿# Visual Studio
-.vs/
+﻿.vs/
 *.user
 *.suo
+*.VC.db
+*.ipch
 out/
 build/
 .cmake/
+vcpkg_installed/
+CMakeUserPresets.json
