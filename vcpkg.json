@@ -1,5 +1,8 @@
-﻿{
+{
   "name": "polynomial-lab",
   "version": "1.0.0",
-  "dependencies": [ "gtest" ]
+  "dependencies": [
+    "gtest"
+  ],
+  "builtin-baseline": "80aae04504a834399456d74605204bfe514762bf"
 }
